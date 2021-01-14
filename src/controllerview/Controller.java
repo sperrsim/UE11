@@ -46,6 +46,7 @@ public class Controller {
         {
             error_msg.setText("Vehicle not found!");
             error_msg.setVisible(true);
+            vehicle_list.setItems(FXCollections.emptyObservableList());
         }
         else
         {
@@ -61,6 +62,7 @@ public class Controller {
         {
             error_msg.setText("Vehicle not found!");
             error_msg.setVisible(true);
+            vehicle_list.setItems(FXCollections.emptyObservableList());
         }
         else
         {
