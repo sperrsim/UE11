@@ -41,7 +41,7 @@ public class Controller {
 
     public void exactSearch()
     {
-        found = arrayToObservablelist(carDatabase.search(search_txt.getText(), true));
+        found = FXCollections.observableList(carDatabase.search(search_txt.getText(), true));
         if(found.contains(null))
         {
             error_msg.setText("Vehicle not found!");
@@ -50,14 +50,14 @@ public class Controller {
         else
         {
             error_msg.setVisible(false);
-            vehicle_list.setItems(FXCollections.observableList(found));
+            vehicle_list.setItems(found);
         }
     }
 
     public void search()
     {
-        found = arrayToObservablelist(carDatabase.search(search_txt.getText(), false));
-        if(found.contains(null))
+        found = FXCollections.observableList(carDatabase.search(search_txt.getText(), false));
+        if(found.size() == 1 && found.contains(null))
         {
             error_msg.setText("Vehicle not found!");
             error_msg.setVisible(true);
@@ -65,19 +65,7 @@ public class Controller {
         else
         {
             error_msg.setVisible(false);
-            vehicle_list.setItems(FXCollections.observableList(found));
+            vehicle_list.setItems(found);
         }
     }
-
-    public ObservableList<Vehicle> arrayToObservablelist(Vehicle[] array)
-    {
-        ArrayList<Vehicle> list = new ArrayList<>();
-        for (int c = 0; c < array.length; c++)
-        {
-            list.add(array[c]);
-        }
-        return FXCollections.observableList(list);
-    }
-
-
 }

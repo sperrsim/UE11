@@ -12,16 +12,21 @@ public class Vehicle {
     private String model;
 
     public Vehicle() {
-
+        MagicGenerator mg = new MagicGenerator();
+        this.setColor(mg.getRandomColor());
+        this.setLicensePlate(mg.getRandomLicencePlate());
+        this.setManufacturer(mg.getRandomManufacturer());
+        this.setModel(mg.getRandomModel(this.getManufacturer()));
+        this.setOwner(mg.getRandomName());
     }
 
     @Override
     public String toString() {
-        return "Manufacturer: " + this.getManufacturer() +
+        return  "Licence-Plate: " + this.getLicensePlate() +
+                "\nManufacturer: " + this.getManufacturer() +
+                "\nOwner: " + this.getOwner() +
                 "\nModel: " + this.getModel() +
-                "\nColor: " + this.getColor() +
-                "\nLicence-Plate: " + this.getLicensePlate() +
-                "\nOwner: " + this.getOwner() + "\n\n";
+                "\nColor: " + this.getColor() + "\n\n";
 
     }
 

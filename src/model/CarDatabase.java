@@ -14,38 +14,28 @@ public class CarDatabase {
 
     public CarDatabase()
     {
-        MagicGenerator mg = new MagicGenerator();
         for (int c = 0; c < 1000; c++)
         {
-            Vehicle vehicle = new Vehicle();
-            vehicle.setColor(mg.getRandomColor());
-            vehicle.setLicensePlate(mg.getRandomLicencePlate());
-            vehicle.setManufacturer(mg.getRandomManufacturer());
-            vehicle.setModel(mg.getRandomModel(vehicle.getManufacturer()));
-            vehicle.setOwner(mg.getRandomName());
-            db.put(vehicle.getLicensePlate(), vehicle);
-            System.out.println("Created vehicle " + vehicle.getLicensePlate() + ".");
+            Vehicle vh = new Vehicle();
+            db.put(vh.getLicensePlate(), vh);
+            System.out.println("Created vehicle " + vh.getLicensePlate() + ".");
         }
     }
-    public Vehicle[] search(String licencePlate, boolean exact) {
+    public ArrayList<Vehicle> search(String licencePlate, boolean exact) {
         long starttime = System.nanoTime();
-        Vehicle[] found;
-        if (exact) {
-            found = new Vehicle[1];
-            if (db.containsKey(licencePlate)) {
-                found[0] = db.get(licencePlate);
-            }
-        } else {
+        ArrayList<Vehicle> found = new ArrayList<>();
+        if (exact)
+        {
+            found.add(db.get(licencePlate));
+        }
+        else
+        {
             Iterator<String> it = db.keySet().iterator();
-            ArrayList<Vehicle> notexact = new ArrayList();
-            while (it.hasNext()) {
+            while (it.hasNext())
+            {
                 String searched = it.next();
                 if (db.get(searched).getLicensePlate().contains(licencePlate))
-                    notexact.add(db.get(searched));
-            }
-            found = new Vehicle[notexact.size()];
-            for (int i = 0; i < notexact.size(); i++) {
-                found[i] = notexact.get(i);
+                    found.add(db.get(searched));
             }
         }
         long endtime = System.nanoTime();
