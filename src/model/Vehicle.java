@@ -23,8 +23,8 @@ public class Vehicle {
     @Override
     public String toString() {
         return  "Licence-Plate: " + this.getLicensePlate() +
-                "\nManufacturer: " + this.getManufacturer() +
                 "\nOwner: " + this.getOwner() +
+                "\nManufacturer: " + this.getManufacturer() +
                 "\nModel: " + this.getModel() +
                 "\nColor: " + this.getColor() + "\n\n";
 

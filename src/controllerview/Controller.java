@@ -42,7 +42,7 @@ public class Controller {
     public void exactSearch()
     {
         found = FXCollections.observableList(carDatabase.search(search_txt.getText(), true));
-        if(found.contains(null))
+        if((found.size() < 1) || found.contains(null))
         {
             error_msg.setText("Vehicle not found!");
             error_msg.setVisible(true);
@@ -57,7 +57,7 @@ public class Controller {
     public void search()
     {
         found = FXCollections.observableList(carDatabase.search(search_txt.getText(), false));
-        if(found.size() == 1 && found.contains(null))
+        if((found.size() < 1) || found.contains(null))
         {
             error_msg.setText("Vehicle not found!");
             error_msg.setVisible(true);
